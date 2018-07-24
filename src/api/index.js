@@ -1,4 +1,4 @@
-let baseUrl = "http://www.tiantiandui.shop/gjfeng-web-client"; //比特域名
+let baseUrl = "http://www.tiantiandui.shop/gjfeng-web-client"; //易购域名
 const VERSION = 'v1_0';
 let index = `${baseUrl}/app/index/${VERSION}`,
   pd = `${baseUrl}/app/product/${VERSION}`,

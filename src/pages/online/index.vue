@@ -1,6 +1,9 @@
 <template>
   <div>
     <header class="head-top flex align-center">
+      <div class="left-icon">
+        <img :src="getLocalImg('logo.png')">
+      </div>
       <div class="search-container2 flex-1" @click="navigate('Products',{id:1333,type:1})">
         <span class="iconfont self-search"></span>
         <input type="text" disabled placeholder="搜索商品...">
@@ -11,194 +14,89 @@
         </router-link>
       </div>
     </header>
-    <main class='scroll-content'>
+    <ul class="nav-list" ref="swipeList">
+      <li class="nav-item nav-item__title danger-color">
+        <span>分类</span><span class="iconfont self-category"></span>
+      </li>
+      <li v-for="(item,index) in column" :key="index" @click="navigate2('Products',{id:item.id,type:1},index)" class="nav-item" :class="{'nav-active':curIndex == index}">
+        <span>{{item.names}}</span>
+      </li>
+    </ul>
+    <main class='scroll-content-1' style="top: 1.7rem;">
       <section>
         <yd-slider :loop="false" :autoplay="2000">
-          <!-- <yd-slider-item v-for="(item,index) in info.indexAds" :key="item.id">
+          <yd-slider-item v-for="(item,index) in info.indexAds" :key="item.id">
             <router-link :to="{name:'Product',query:{id:item.address.substring(item.address.lastIndexOf('/')+1),tips:0}}" v-if="index==0">
               <img :src="item.photo" :alt="item.names">
             </router-link>
-          </yd-slider-item> -->
-          <yd-slider-item @click.native="goMerchant">
-            <img :src="getLocalImg('tt_1.jpg')" alt="会员专享">
           </yd-slider-item>
+          <!-- <yd-slider-item @click.native="goMerchant">
+            <img :src="getLocalImg('tt_1.jpg')" alt="会员专享">
+          </yd-slider-item> -->
         </yd-slider>
       </section>
       <!-- 四大平台 -->
-      <section class="nav-container clearfix">
-        <div v-for="(item,index) in platform" :key="index" :class="['nav-item',index==2?'large':'']" @click="navigate(item.link,{id:item.id,type:item.type})">
-          <img :src="getLocalImg(item.img)">
-          <p>{{item.text}}</p>
+      <section class="platform-container">
+        <div class="login-btn" @click="login" v-if="!member">登录/注册</div>
+        <div class=" flex just-around">
+          <div class="platform-item flex-1" @click="navigate('Products',{id:1333,type:1})">
+          <img :src="getLocalImg('1.jpg')">
+          <p>优佳兑商城</p>
+        </div>
+        <div class="platform-item flex-1" @click="navigate('Products',{id:1342,type:1})">
+          <img :src="getLocalImg('2.jpg')">
+          <p>福宝兑换</p>
+        </div>
+        <div class="platform-item flex-1" @click="navigate('Products',{id:1336,type:1})">
+          <img :src="getLocalImg('3.jpg')">
+          <p>福宝+现金兑换</p>
+        </div>
+        <div class="platform-item flex-1">
+          <a href="http://bfcc.btfbfcc.com/view/index.html">
+            <img :src="getLocalImg('4.jpg')">
+            <p>比特金福</p>
+          </a>
+        </div>
+        <div class="platform-item flex-1" @click="navigate('')">
+          <img :src="getLocalImg('5.jpg')">
+          <p>充值中心</p>
+        </div>
         </div>
       </section>
       <section class="fresh-container">
-        <div class="activity-header" :style="{'background-image':formatBg('20.png')}">
-            <span class="jianbian-text1">新人见面礼</span>
-        </div>
-        <ul class="clearfix">
-          <li class="fresh-item fl">
+        <ul class="flex just-between" @click="navigate('')">
+          <li class="fresh-item">
             <img :src="getLocalImg('6.png')" alt="">
           </li>
-          <li class="fresh-item fl">
+          <li class="fresh-item">
             <img :src="getLocalImg('7.png')" alt="">
           </li>
-          <li class="fresh-item fl">
+          <li class="fresh-item">
             <img :src="getLocalImg('8.png')" alt="">
           </li>
-          <li class="fresh-item fl">
+          <li class="fresh-item">
             <img :src="getLocalImg('9.png')" alt="">
           </li>
         </ul>
-      </section>
-      <section class="activity-container clearfix">
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name jianbian-text2">超级福利</h3>
-            <p>短袖连衣裙￥89</p>
-            <span class="activity-desc jianbian-bg1">每日10点上新</span>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('10.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name jianbian-text3">限量爆款</h3>
-            <p>每日2场抢好货</p>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('11.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">9块9包邮</h3>
-            <p>每日白菜价</p>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('12.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">理财福利</h3>
-            <p>福利限时提升</p>
-            <span class="activity-desc jianbian-bg1">月标120元+1%</span>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('13.png')" alt="">
-          </div>
-        </div>
-      </section>
-      <section class="activity-container clearfix">
-        <h2 class="activity-title jianbian-text3">每·日·优·选</h2>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">全网秒杀</h3>
-            <p>3斤车厘子￥55抢</p>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('14.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">好店福利</h3>
-            <p>精品持续上新</p>
-            <span class="activity-desc jianbian-bg2">最高返30%</span>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('15.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">全球惠选</h3>
-            <p>FX券后84元3件</p>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('16.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">值·爆料</h3>
-            <p>巴拉巴拉超品日</p>
-            <span class="activity-desc jianbian-bg2">1件5折！</span>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('17.png')" alt="">
-          </div>
-        </div>
-      </section>
-      <section class="activity-container clearfix">
-        <h2 class="activity-title jianbian-text4">特·色·频·道</h2>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">旅行福利</h3>
-            <p>好房限时6折起</p>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('18.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">团购福利</h3>
-            <p>好吃的在这里</p>
-            <span class="activity-desc jianbian-bg3">专享1.4%</span>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('19.png')" alt="">
-          </div>
-        </div>
       </section>
       <section class="ads-container">
         <a href="http://bfcc.btfbfcc.com/view/index.html">
           <img src="http://api.btfbfcc.com/resources/upload/20180601/940107d3f6ce41768c48374bc6c5cea9.jpg" alt="">
         </a>
       </section>
-      <section class="activity-container clearfix">
-        <h2 class="activity-title jianbian-text5">有·好·券</h2>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">外卖券</h3>
-            <p>饿了么满20减1</p>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('21.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">网购券</h3>
-            <p>京东苏宁考拉购</p>
-            <span class="activity-desc jianbian-bg4">苏宁手机880减110</span>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('22.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">快餐券</h3>
-            <p>任意消费送鸡翅</p>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('23.png')" alt="">
-          </div>
-        </div>
-        <div class="activity-item fl">
-          <div class="activity-text fl">
-            <h3 class="activity-name">出行券</h3>
-            <p>滴滴ofo哈罗单车</p>
-            <span class="activity-desc jianbian-bg4">ofo免费汽车券</span>
-          </div>
-          <div class="activity-thumb fr">
-            <img :src="getLocalImg('24.png')" alt="">
-          </div>
-        </div>
-      </section>
+      <!-- 商品展示 -->
+        <section class="pd-list clearfix">
+            <router-link :class="['pd-item pd-item__middle fl']" v-for="(item,index) in productList" :key="index" :to="{path:'/online/product',query:{id:item.id}}">
+              <div class="img-cover">
+                <img :src="item.imgUrl">
+              </div>
+              <div class="pd-info">
+                <div class="pd-name">{{item.name}}</div>
+              <!-- <div class="pd-attr">{{item.name}}</div> -->
+              <div class="pd-price"><span class="danger-color">￥{{item.price}}</span></div>
+              </div>
+            </router-link>
+        </section>
     </main>
     <footer-bar></footer-bar>
   </div>
@@ -211,7 +109,8 @@ import { mixin, getStore, setStore, localImg } from "components/common/mixin";
 import {
   ygOnlineShopIndex,
   findAppUpgredeByType,
-  newNotice
+  onlineProductsByAllColumn,
+  allColumn
 } from "../../api/index";
 export default {
   name: "Online",
@@ -219,16 +118,13 @@ export default {
     return {
       oldBack: mui.back,
       info: {},
+      productList: [],
       loginAccount: false,
-      platform: [
-        { img: "1.png", link: "Products", text: "优佳兑商城",id:1333,type:1 },
-        { img: "2.png", link: "Products", text: "福宝兑换",id:1342,type:1 },
-        { img: "3.png", link: "Products", text: "福宝+现金兑换",id:1336,type:1 },
-        { img: "4.png", link: "", text: "福宝抽奖" },
-        { img: "5.png", link: "", text: "充值中心" }
-      ],
+      column: [],
+      curIndex: 0,
+      scrollLeft: 0, //记录tab滚动值
       type: "", //APP环境
-      curVersion: "", //app版本
+      curVersion: "" //app版本
     };
   },
   components: { HeaderTop, FooterBar },
@@ -246,6 +142,8 @@ export default {
   created() {
     this.init();
     this.getInfo();
+    this.getColumn();
+    this.getProducts();
   },
   mounted() {
     document.addEventListener("plusready", this.getVersion, false);
@@ -295,8 +193,52 @@ export default {
         }
       });
     },
+    getColumn() {
+      let vm = this;
+      mui.ajax({
+        url: allColumn,
+        type: "post",
+        headers: { "app-version": "v1.0" },
+        data: {
+          token: md5(`gjfengallColumn`)
+        },
+        success(res) {
+          let _result = res.result;
+          let menu = [];
+          Object.entries(_result).forEach((value, index) => {
+            var item = {};
+            var parent = value[0],
+              children = value[1];
+            if (children.length > 0) {
+              menu.push(...children);
+            }
+          });
+          vm.column = menu;
+        }
+      });
+    },
+    getProducts() {
+      let vm = this;
+      mui.ajax({
+        url: `${onlineProductsByAllColumn}/1/1333`,
+        type: "post",
+        headers: { "app-version": "v1.0" },
+        data: {
+          pageNo: 1,
+          pageSize: 10,
+          longitude: "",
+          latitude: "",
+          likeValue: "",
+          token: md5(`gjfengonlineProductsByAllColumn`)
+        },
+        success(res) {
+          let _list = res.result;
+          vm.productList = [...vm.productList, ..._list];
+        }
+      });
+    },
     goMerchant() {
-        this.$router.push({ name: "VIP" });
+      this.$router.push({ name: "VIP" });
     },
     login() {
       if (!this.member) {
@@ -305,25 +247,30 @@ export default {
       }
       this.$router.push({ name: "Me" });
     },
-    navigate(link,p) {
+    navigate(link, p) {
       //商品列表
-      if(p.id){
+      if (p && p.id) {
         this.$router.push({
-        name: "Products",
-        params:{update:true},
-        query: p
-      });
-      }
-        //其他平台
-      else{
-      if (!link) {
-        this.$dialog.toast({
-          mes: "数据对接中，敬请期待！"
+          name: "Products",
+          params: { update: true },
+          query: p
         });
-        return;
+      } else {
+        //其他平台
+        if (!link) {
+          this.$dialog.toast({
+            mes: "功能开发中，敬请期待！"
+          });
+          return;
+        }
+        this.$router.push({ name: link });
       }
-      this.$router.push({ name: link});
-      }
+    },
+    navigate2(link, p, i) {
+      this.curIndex = i;
+      setTimeout(() => {
+        this.navigate(link, p);
+      }, 500);
     },
     getVersion() {
       let vm = this;
@@ -408,15 +355,15 @@ export default {
   height: 1rem;
   background-color: @white;
   padding: 0.1rem 0.15rem;
-  .left-icon,
-  .right-icon {
-    .wh(1rem,1rem);
-    line-height: 1rem;
+  .left-icon img {
+    .wh(0.6rem,0.6rem);
+    border-radius: 50%;
   }
   .search-container2 {
-    background: rgb(232, 232, 232);
+    background: rgba(232, 232, 232, 0.8);
     padding: 0.15rem 0.1rem 0.15rem 0.1rem;
     border-radius: 0.4rem;
+    .mg-h;
     input {
       width: 86%;
       border: none;
@@ -424,8 +371,11 @@ export default {
       font-size: 0.3rem;
     }
   }
-  span {
+  .self-search {
+    display: inline-block;
     color: rgb(102, 102, 102);
+    width: 0.5rem;
+    border-right: 1px solid #ccc;
   }
 }
 .yd-slider-item img {
@@ -437,183 +387,124 @@ export default {
 .activity-container {
   background-color: #fff;
 }
-.nav-container .nav-item {
-  float: left;
-  width: 19%;
-  margin: 10px 0;
-  text-align: center;
-  &.large {
-    width: 22%;
+.nav-list {
+  padding: 0 2%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  background-color: @white;
+  .nav-item {
+    display: inline-block;
+    width: 20%;
+    height: 0.6rem;
+    text-align: center;
+    transition: all 0.2s;
+    font-size: 0.3rem;
+    &.nav-item__title {
+      width: 14%;
+      line-height: 0.6rem;
+    }
+    span {
+      border-bottom: 2px solid transparent;
+    }
+    &.nav-active {
+      span {
+        color: @red;
+        border-color: currentColor;
+        padding: 0 0 0.1rem 0;
+      }
+    }
   }
-  img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+}
+.platform-container {
+  background-color: @white;
+  padding: 0 0 0.1rem;
+  overflow: hidden;
+  .login-btn {
+    margin: 0 auto @pd;
+    background: #fe6637;
+    color: #fff;
+    font-size: 0.32rem;
+    width: 3rem;
+    text-align: center;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    border-radius: 0 0 5px 5px;
   }
-  p {
-    font-size: 12px;
-    color: #9a9595;
+  .platform-item {
+    .mg-v;
+    text-align: center;
+    img {
+      .wh(1rem,1rem);
+      border-radius: 50%;
+    }
+    p {
+      font-size: 0.22rem;
+    }
   }
 }
 .fresh-container {
-  text-align: center;
-  h2 {
-    margin: 10px 0;
-    font-size: 18px;
-    font-weight: 400;
-    letter-spacing: 5px;
-  }
+  padding: 5px;
   .fresh-item {
-    width: 47%;
-    margin-left: 2%;
-    margin-bottom: 2%;
+    width: 49%;
     img {
       width: 100%;
       border-radius: 5px;
     }
   }
 }
-.activity-header {
-    .pd-v;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 5px;
-    text-align: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-  }
-.activity-container {
-  margin-top: 10px;
-  .activity-title {
-    float: left;
-    width: 100%;
-    font-size: 16px;
-    font-weight: 400;
-    text-align: center;
-    padding: 12px;
-    letter-spacing: 2px;
-    border-bottom: 1px solid #eee;
-  }
-  .activity-item {
-    width: 50%;
-    min-height: 100px;
-    padding: 10px 0;
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    .activity-text {
-      width: 60%;
-      padding-left: 8px;
-      line-height: 22px;
-      p {
-        font-size: 12px;
-        color: rgb(153, 153, 153);
-      }
-      .activity-desc {
-        color: #fff;
-        font-size: 8px;
-        padding: 2px 3px;
-        border-radius: 3px;
-      }
-    }
-    .activity-thumb {
-      width: 40%;
-      img {
-        width: 100%;
-        padding-right: 8px;
-      }
-    }
-    .activity-name {
-      font-size: 16px;
-    }
-    &:nth-of-type(2n) {
-      border-right: none;
-    }
-  }
-}
-
-/*文字渐变*/
-.jianbian-text1 {
-  display: inline-block;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(255, 203, 127),
-    rgb(254, 104, 51)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.jianbian-text2 {
-  display: inline-block;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(254, 111, 126),
-    rgb(243, 4, 185)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.jianbian-text3 {
-  display: inline-block;
-  background: -webkit-linear-gradient(left, rgb(254, 104, 27), rgb(243, 25, 6));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.jianbian-text4 {
-  display: inline-block;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(87, 131, 236),
-    rgb(178, 63, 229)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.jianbian-text5 {
-  display: inline-block;
-  background: -webkit-linear-gradient(
-    left,
-    rgb(255, 109, 137),
-    rgb(255, 82, 48)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/*背景渐变*/
-.jianbian-bg1 {
-  background: -webkit-linear-gradient(
-    left,
-    rgb(254, 87, 94),
-    rgb(255, 63, 136)
-  );
-}
-.jianbian-bg2 {
-  background: -webkit-linear-gradient(left, rgb(254, 152, 3), rgb(255, 103, 4));
-}
-.jianbian-bg3 {
-  background: -webkit-linear-gradient(
-    left,
-    rgb(87, 131, 236),
-    rgb(178, 63, 229)
-  );
-}
-.jianbian-bg4 {
-  background: -webkit-linear-gradient(
-    left,
-    rgb(255, 109, 137),
-    rgb(255, 82, 48)
-  );
-}
 .ads-container {
   padding: 10px 10px 0 10px;
   img {
     width: 100%;
     border-radius: 3px;
+  }
+}
+.pd-list {
+  .pd-item {
+    background-color: @white;
+    margin-bottom: 0.1rem;
+  }
+  .pd-item__middle {
+    width: 49%;
+    padding: 0.1rem;
+    .img-cover {
+      width: 100%;
+      position: relative;
+      padding: 50% 0;
+      img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .pd-info {
+      margin-top: 0.1rem;
+      .pd-name {
+        height: 40px;
+        line-height: 20px;
+        font-size: 0.28rem;
+        .multi-ellipsis(2);
+      }
+      .pd-attr {
+        color: @lightgray;
+        font-size: 0.24rem;
+        height: 40px;
+        line-height: 20px;
+        .multi-ellipsis(2);
+      }
+      .pd-price {
+        font-size: 0.42rem;
+      }
+    }
+    &:nth-of-type(2n) {
+      margin-left: 1%;
+    }
+    &:nth-of-type(2n + 1) {
+      margin-right: 1%;
+    }
   }
 }
 </style>

@@ -1,140 +1,274 @@
-
-@font-face {font-family: "iconfont";
-  src: url('iconfont.ttf') format('truetype'); 
+@font-face {
+  font-family: "iconfont";
+  src: url('iconfont.ttf') format('truetype');
 }
 
 .iconfont {
-  font-family:"iconfont" !important;
-  font-size:16px;
-  font-style:normal;
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
 }
-.iconfont-large{
-  font-family:"iconfont" !important;
+
+.iconfont-large {
+  font-family: "iconfont" !important;
   font-size: 24px;
-  font-style:normal;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
 }
-.self-shopcart:before { content: "\e601"; }
 
-.self-dianhua:before { content: "\e600"; }
+.self-shopcart:before {
+  content: "\e601";
+}
 
-.self-mobile:before { content: "\e625"; }
+.self-dianhua:before {
+  content: "\e600";
+}
 
-.self-bianji:before { content: "\e83f"; }
+.self-mobile:before {
+  content: "\e625";
+}
 
-.self-quan:before { content: "\e63c"; }
+.self-bianji:before {
+  content: "\e83f";
+}
 
-.self-yuanbao:before { content: "\e63b"; }
+.self-quan:before {
+  content: "\e63c";
+}
 
-.self-kefu:before { content: "\e616"; }
+.self-yuanbao:before {
+  content: "\e63b";
+}
 
-.self-delete:before { content: "\e677"; }
+.self-kefu:before {
+  content: "\e616";
+}
 
-.self-lishijilu:before { content: "\e621"; }
+.self-delete:before {
+  content: "\e677";
+}
 
-.self-yinxingqia:before { content: "\e65c"; }
+.self-lishijilu:before {
+  content: "\e621";
+}
 
-.self-scan:before { content: "\e607"; }
+.self-yinxingqia:before {
+  content: "\e65c";
+}
 
-.self-fenhongjilu:before { content: "\e61c"; }
+.self-scan:before {
+  content: "\e607";
+}
 
-.self-dingdan:before { content: "\e6af"; }
+.self-fenhongjilu:before {
+  content: "\e61c";
+}
 
-.self-package:before { content: "\e60d"; }
+.self-dingdan:before {
+  content: "\e6af";
+}
 
-.self-home:before { content: "\e619"; }
+.self-package:before {
+  content: "\e60d";
+}
 
-.self-ai-app:before { content: "\e628"; }
+.self-home:before {
+  content: "\e619";
+}
 
-.self-dizhi:before { content: "\e609"; }
+.self-ai-app:before {
+  content: "\e628";
+}
 
-.self-code:before { content: "\e629"; }
+.self-dizhi:before {
+  content: "\e609";
+}
 
-.self-add:before { content: "\e61f"; }
+.self-code:before {
+  content: "\e629";
+}
 
-.self-daijinquan:before { content: "\e654"; }
+.self-add:before {
+  content: "\e61f";
+}
 
-.self-right:before { content: "\e701"; }
+.self-daijinquan:before {
+  content: "\e654";
+}
 
-.self-male:before { content: "\e62c"; }
+.self-right:before {
+  content: "\e701";
+}
 
-.self-message:before { content: "\e67d"; }
+.self-male:before {
+  content: "\e62c";
+}
 
-.self-me1:before { content: "\e60c"; }
+.self-me1:before {
+  content: "\e60c";
+}
 
-.self-qrcode:before { content: "\e642"; }
+.self-message:before {
+  content: "\e644";
+}
 
-.self-upload:before { content: "\e66f"; }
+.self-qrcode:before {
+  content: "\e642";
+}
 
-.self-zengsong:before { content: "\e62b"; }
+.self-upload:before {
+  content: "\e66f";
+}
 
-.self-me:before { content: "\e687"; }
+.self-category:before {
+  content: "\e62e";
+}
 
-.self-shangjia:before { content: "\e634"; }
+.self-zengsong:before {
+  content: "\e62b";
+}
 
-.self-hongbao:before { content: "\e640"; }
+.self-me:before {
+  content: "\e687";
+}
 
-.self-xiaofeijilu:before { content: "\e626"; }
+.self-shangjia:before {
+  content: "\e634";
+}
 
-.self-tixian:before { content: "\e685"; }
+.self-hongbao:before {
+  content: "\e640";
+}
 
-.self-dingdan2:before { content: "\e6cb"; }
+.self-xiaofeijilu:before {
+  content: "\e626";
+}
 
-.self-female:before { content: "\e67e"; }
+.self-tixian:before {
+  content: "\e685";
+}
 
-.self-list:before { content: "\e623"; }
+.self-dingdan2:before {
+  content: "\e6cb";
+}
 
-.self-pingguo:before { content: "\e63d"; }
+.self-female:before {
+  content: "\e67e";
+}
 
-.self-wifi:before { content: "\e64d"; }
+.self-list:before {
+  content: "\e623";
+}
 
-.self-lock:before { content: "\e60f"; }
+.self-pingguo:before {
+  content: "\e63d";
+}
 
-.self-cart2:before { content: "\e622"; }
+.self-wifi:before {
+  content: "\e64d";
+}
 
-.self-location:before { content: "\e608"; }
+.self-lock:before {
+  content: "\e60f";
+}
 
-.self-sort:before { content: "\e620"; }
+.self-fire:before {
+  content: "\e73d";
+}
 
-.self-tuijianren:before { content: "\e624"; }
+.self-cart2:before {
+  content: "\e622";
+}
 
-.self-dui:before { content: "\e627"; }
+.self-location:before {
+  content: "\e608";
+}
 
-.self-guanbi:before { content: "\e653"; }
+.self-sort:before {
+  content: "\e620";
+}
 
-.self-me2:before { content: "\e61a"; }
+.self-tuijianren:before {
+  content: "\e624";
+}
 
-.self-renzheng:before { content: "\e618"; }
+.self-dui:before {
+  content: "\e627";
+}
 
-.self-search:before { content: "\e610"; }
+.self-guanbi:before {
+  content: "\e653";
+}
 
-.self-zhifubao:before { content: "\e62a"; }
+.self-me2:before {
+  content: "\e61a";
+}
 
-.self-xinhao:before { content: "\e62d"; }
+.self-renzheng:before {
+  content: "\e618";
+}
 
-.self-tel:before { content: "\e652"; }
+.self-search:before {
+  content: "\e610";
+}
 
-.self-zhuanchu:before { content: "\e639"; }
+.self-zhifubao:before {
+  content: "\e62a";
+}
 
-.self-zhuanru:before { content: "\e63a"; }
+.self-xinhao:before {
+  content: "\e62d";
+}
 
-.self-weixinzhifu:before { content: "\e61e"; }
+.self-tel:before {
+  content: "\e652";
+}
 
-.self-noorder:before { content: "\e60b"; }
+.self-zhuanchu:before {
+  content: "\e639";
+}
 
-.self-caigou:before { content: "\e635"; }
+.self-zhuanru:before {
+  content: "\e63a";
+}
 
-.self-caigou2:before { content: "\e636"; }
+.self-weixinzhifu:before {
+  content: "\e61e";
+}
 
-.self-wallet:before { content: "\e672"; }
+.self-noorder:before {
+  content: "\e60b";
+}
 
-.self-x:before { content: "\e633"; }
+.self-caigou:before {
+  content: "\e635";
+}
 
-.self-setting:before { content: "\e68e"; }
+.self-caigou2:before {
+  content: "\e636";
+}
 
-.self-cart:before { content: "\e606"; }
+.self-wallet:before {
+  content: "\e672";
+}
 
-.self-home1:before { content: "\e61b"; }
+.self-x:before {
+  content: "\e633";
+}
 
-.self-star:before { content: "\e60e"; }
+.self-setting:before {
+  content: "\e68e";
+}
+
+.self-cart:before {
+  content: "\e606";
+}
+
+.self-home1:before {
+  content: "\e61b";
+}
+
+.self-star:before {
+  content: "\e60e";
+}

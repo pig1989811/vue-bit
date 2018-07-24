@@ -14,10 +14,12 @@
         </ul>
       </section>
     </main>
+      <footer-bar></footer-bar>
   </div>
 </template>
 <script>
 import HeaderTop from "components/header/index";
+import FooterBar from "components/footer/index";
 import { allColumn } from "../../api/index";
 export default {
   name: "AllColumn",
@@ -26,7 +28,7 @@ export default {
       info: null
     };
   },
-  components: { HeaderTop },
+  components: { HeaderTop, FooterBar },
   created() {
     this.getColumn();
   },

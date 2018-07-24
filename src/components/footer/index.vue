@@ -3,12 +3,12 @@
     <yd-tabbar-item title="首页" link="/online/index" :active="$route.path.indexOf('/online/index') !== -1">
       <span :class="['iconfont-large' ,$route.path.indexOf('/online/index') !== -1?'self-home':'self-home1']" slot="icon" style="font-size:23px;"></span>
     </yd-tabbar-item>
+    <yd-tabbar-item title="分类" :active="$route.path.indexOf('/online/allcolumn') !== -1" link="/online/allcolumn">
+      <span class="iconfont-large self-category" slot="icon"></span>
+    </yd-tabbar-item>
     <yd-tabbar-item title="订单" :active="$route.path.indexOf('/order/index') !== -1" type="a" @click.native="goOrder">
       <span class="iconfont-large self-dingdan2" slot="icon" style="font-size:21px;"></span>
     </yd-tabbar-item>
-    <!-- <yd-tabbar-item title="采购专区" :active="$route.path.indexOf('/merchant/index') !== -1" type="a" @click.native="goMerchant">
-      <span class="iconfont-large self-caigou" slot="icon"></span>
-    </yd-tabbar-item> -->
     <yd-tabbar-item title="购物车" link="/online/shoppingcart" :active="$route.path.indexOf('/online/shoppingcart') !== -1">
       <span class="iconfont-large self-cart" slot="icon"></span>
     </yd-tabbar-item>
